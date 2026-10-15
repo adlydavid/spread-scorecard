@@ -1,0 +1,23 @@
+{
+  "name": "spread-scorecard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Footbridge Spread Scorecard: monthly spread (GP) and Bullhorn activity ratios for account managers and recruiters.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "dev:netlify": "set -a && . ./.env && set +a && SHARP_IGNORE_GLOBAL_LIBVIPS=1 npx netlify-cli@27.10.2 dev --functions netlify/functions",
+    "build": "vite build",
+    "preview": "vite preview --open"
+  },
+  "devDependencies": {
+    "vite": "5.4.10"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@netlify/blobs": "11.1.2",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

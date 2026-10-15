@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Spread Scorecard</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{var t=localStorage.getItem("ss-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/src/style.css">
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="controls">
+    <div class="tabs" role="tablist" aria-label="Report side">
+      <button id="tab-sales" role="tab" aria-selected="true" data-side="sales">Sales</button>
+      <button id="tab-recruiting" role="tab" aria-selected="false" data-side="recruiting">Recruiting</button>
+    </div>
+    <select id="month" class="field" aria-label="Month"></select>
+    <input id="q" class="field" type="search" placeholder="Find a name" aria-label="Find a name" autocomplete="off">
+    <label class="check"><input id="former" type="checkbox"> Show former staff</label>
+    <span class="status" id="status"><span class="dot"></span><span id="statusText">Connecting to report data…</span></span>
+    <div class="tabs theme" role="group" aria-label="Theme">
+      <button type="button" data-theme-set="system" aria-label="System theme" title="System theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg></button>
+      <button type="button" data-theme-set="light" aria-label="Light theme" title="Light theme"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></button>
+      <button type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8.5 8.5 0 0 1 9.4 4a8.5 8.5 0 1 0 10.6 10.6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    </div>
+    <button id="print" class="field printbtn" type="button">Print</button>
+  </div>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <article class="sheet" aria-live="polite">
+    <header class="mast">
+      <div>
+        <div class="eyebrow">Footbridge</div>
+        <h1>Spread Scorecard</h1>
+      </div>
+      <div class="right">
+        <div class="month" id="mMonth">—</div>
+        <div class="sub" id="mRange">Monthly spread and activity by person</div>
+        <div class="src" id="mSrc">Sources: Weekly Spread Dashboard · Bullhorn</div>
+      </div>
+    </header>
+
+    <div id="body">
+      <div class="empty" id="emptyState">
+        <strong>Loading this month's numbers</strong>
+        Spread comes from Shelley's Weekly Spread Dashboard and activity from Bullhorn. The table fills in as soon as the report data loads.
+      </div>
+    </div>
+  </article>
+</div>
+<button id="adminBtn" class="adminfab" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path class="shackle" d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="lbl">Admin login</span></button>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

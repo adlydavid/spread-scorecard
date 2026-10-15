@@ -1,0 +1,132 @@
+month,account_manager,former,spread,calls,client_visits,job_orders,send_outs,interviews,deals,starts,send_outs_per_deal,visits_per_deal,fill_pct
+2026-01,Jillian Buleha,True,19011.83,1419,27,5,13,1,3,1,4.33,9.0,60.0
+2026-01,Jason Endres,False,0,196,25,3,19,2,1,0,19.0,25.0,33.3
+2026-01,House Account,False,8614.79,0,0,0,0,0,0,0,,,
+2026-01,Chris Jenkins,True,24279.45,0,0,0,1,0,1,0,1.0,0.0,
+2026-01,Paige Madden,False,90719.36,830,15,6,14,3,1,3,14.0,15.0,16.7
+2026-01,James Nash,False,0,516,30,6,13,3,0,0,,,0.0
+2026-01,Brendan O'Donnell,False,14190.19,2,0,0,0,0,2,0,0.0,0.0,
+2026-01,Michael Salemi,False,111703.16,59,30,14,27,1,1,2,27.0,30.0,7.1
+2026-01,Bryn Vaydik,False,1254.4,7,0,0,1,0,0,0,,,
+2026-01,Hannah Wilkinson,False,35760.98,78,0,7,7,1,2,0,3.5,0.0,28.6
+2026-01,Unassigned / system-owned,False,,0,0,0,0,4,0,0,,,
+2026-02,Jillian Buleha,True,29617.51,727,8,2,3,3,0,0,,,0.0
+2026-02,Jason Endres,False,0,43,47,4,12,0,2,0,6.0,23.5,50.0
+2026-02,House Account,False,14362.44,0,0,0,0,0,0,0,,,
+2026-02,Chris Jenkins,True,37252.31,0,0,0,0,0,0,0,,,
+2026-02,Eli LeRoy,False,0,1095,6,0,0,0,0,0,,,
+2026-02,Paige Madden,False,95778.84,363,21,4,28,6,2,0,14.0,10.5,50.0
+2026-02,Charlotte McCabe,False,0,296,4,0,0,0,0,0,,,
+2026-02,James Nash,False,0,1339,41,10,3,0,0,0,,,0.0
+2026-02,Brendan O'Donnell,False,12738.85,2,0,0,0,0,0,0,,,
+2026-02,Kenia Reyes,True,0,142,7,0,0,0,0,0,,,
+2026-02,Michael Salemi,False,72888.49,50,36,6,24,2,1,0,24.0,36.0,16.7
+2026-02,Bryn Vaydik,False,1128.96,5,0,0,1,0,0,0,,,
+2026-02,Hannah Wilkinson,False,80954.21,43,0,24,46,3,0,0,,,0.0
+2026-02,Unassigned / system-owned,False,,0,0,0,0,5,0,0,,,
+2026-03,Jillian Buleha,True,0,0,0,0,0,1,0,1,,,
+2026-03,Jason Endres,False,21206.66,41,43,8,20,2,0,3,,,0.0
+2026-03,House Account,False,58953.15,0,0,0,0,0,0,0,,,
+2026-03,Eli LeRoy,False,0,1163,8,8,0,0,0,0,,,0.0
+2026-03,Paige Madden,False,120422.05,682,15,3,6,5,2,2,3.0,7.5,66.7
+2026-03,Charlotte McCabe,False,0,1526,8,4,5,0,0,0,,,0.0
+2026-03,James Nash,False,4786.59,950,43,13,17,2,1,0,17.0,43.0,7.7
+2026-03,Brendan O'Donnell,False,14845.57,5,0,0,0,0,0,1,,,
+2026-03,Kenia Reyes,True,0,50,3,0,0,0,0,0,,,
+2026-03,Michael Salemi,False,80498.55,60,39,13,31,7,3,2,10.33,13.0,23.1
+2026-03,Bryn Vaydik,False,1191.68,8,0,0,2,0,0,0,,,
+2026-03,Hannah Wilkinson,False,113959.95,80,0,13,45,11,1,1,45.0,0.0,7.7
+2026-03,Unassigned / system-owned,False,,0,0,1,2,1,0,0,,,0.0
+2026-04,Jillian Buleha,True,0,0,0,0,2,0,0,0,,,
+2026-04,Jason Endres,False,63960.72,33,45,3,9,2,1,1,9.0,45.0,33.3
+2026-04,House Account,False,82344.39,0,0,0,0,0,0,0,,,
+2026-04,Eli LeRoy,False,0,161,20,2,2,0,0,0,,,0.0
+2026-04,Paige Madden,False,151699.88,170,30,7,20,3,0,2,,,0.0
+2026-04,Charlotte McCabe,False,0,1479,16,2,0,0,0,0,,,0.0
+2026-04,James Nash,False,6290.47,542,53,15,15,2,2,0,7.5,26.5,13.3
+2026-04,Brendan O'Donnell,False,17167.94,18,0,0,0,0,0,0,,,
+2026-04,Kenia Reyes,True,0,117,4,2,3,0,0,0,,,0.0
+2026-04,Michael Salemi,False,103215.14,59,30,14,50,14,12,4,4.17,2.5,85.7
+2026-04,Bryn Vaydik,False,1568,9,4,0,0,0,1,0,0.0,4.0,
+2026-04,Hannah Wilkinson,False,121113.91,114,0,23,84,15,3,1,28.0,0.0,13.0
+2026-05,Jillian Buleha,True,0,0,0,0,1,0,0,1,,,
+2026-05,Jason Endres,False,57587,32,38,3,7,1,0,0,,,0.0
+2026-05,House Account,False,60790.64,0,0,0,0,0,0,0,,,
+2026-05,Eli LeRoy,False,-369.42,117,42,1,0,0,0,0,,,0.0
+2026-05,Paige Madden,False,104094.37,123,21,3,13,5,2,0,6.5,10.5,66.7
+2026-05,Charlotte McCabe,False,0,112,34,8,4,0,0,0,,,0.0
+2026-05,James Nash,False,4476.72,154,50,7,25,13,4,1,6.25,12.5,57.1
+2026-05,Brendan O'Donnell,False,13187.48,3,0,0,0,0,0,0,,,
+2026-05,Michael Salemi,False,75515.51,92,25,8,40,23,14,13,2.86,1.79,175.0
+2026-05,Bryn Vaydik,False,1191.68,76,4,1,3,0,1,0,3.0,4.0,100.0
+2026-05,Hannah Wilkinson,False,73281.22,110,0,26,64,11,3,1,21.33,0.0,11.5
+2026-05,Unassigned / system-owned,False,,0,0,0,1,1,0,0,,,
+2026-06,Jason Endres,False,51794.17,37,36,2,11,2,2,0,5.5,18.0,100.0
+2026-06,House Account,False,54599.21,0,0,0,0,0,0,0,,,
+2026-06,Chris Jenkins,True,0,0,0,0,1,0,0,0,,,
+2026-06,Eli LeRoy,False,1510.23,83,36,1,1,0,0,0,,,0.0
+2026-06,Paige Madden,False,97747.69,102,23,5,15,4,2,1,7.5,11.5,40.0
+2026-06,Charlotte McCabe,False,0,93,30,2,4,0,0,0,,,0.0
+2026-06,James Nash,False,12502.84,506,37,4,23,5,5,3,4.6,7.4,125.0
+2026-06,Brendan O'Donnell,False,13864.28,2,0,0,0,0,0,0,,,
+2026-06,Michael Salemi,False,123471.08,62,36,19,41,15,6,10,6.83,6.0,31.6
+2026-06,Bryn Vaydik,False,1128.96,77,17,1,1,0,0,0,,,0.0
+2026-06,Hannah Wilkinson,False,109582.68,55,0,24,63,10,4,4,15.75,0.0,16.7
+2026-06,Unassigned / system-owned,False,,0,0,1,0,4,1,0,0.0,0.0,100.0
+2026-07,Jillian Buleha,True,0,0,0,0,1,0,0,0,,,
+2026-07,Jason Endres,False,59400.35,65,51,9,24,3,1,1,24.0,51.0,11.1
+2026-07,House Account,False,53030.34,0,0,0,0,0,0,0,,,
+2026-07,Eli LeRoy,False,1503.35,96,36,4,5,0,0,0,,,0.0
+2026-07,Paige Madden,False,94503.54,197,39,10,27,4,0,0,,,0.0
+2026-07,Charlotte McCabe,False,0,99,40,9,6,0,0,0,,,0.0
+2026-07,James Nash,False,27792.06,114,54,11,31,5,9,1,3.44,6.0,81.8
+2026-07,Brendan O'Donnell,False,20093.98,0,0,0,0,0,0,0,,,
+2026-07,Michael Salemi,False,172311.71,70,42,13,41,12,2,4,20.5,21.0,15.4
+2026-07,Bryn Vaydik,False,5490.4,88,19,3,2,0,3,1,0.67,6.33,100.0
+2026-07,Hannah Wilkinson,False,143000.05,97,0,35,77,7,5,3,15.4,0.0,14.3
+2026-07,Unassigned / system-owned,False,,0,0,0,3,0,0,0,,,
+2026-08,Jason Endres,False,59091.59,62,40,0,13,5,5,1,2.6,8.0,
+2026-08,Zoe Gomez,False,0,51,2,0,0,0,0,0,,,
+2026-08,House Account,False,24129.44,0,0,0,0,0,0,0,,,
+2026-08,Gertrude Olivia Keane,False,0,44,2,0,0,0,0,0,,,
+2026-08,Ryan Lawler,False,0,46,0,0,0,0,0,0,,,
+2026-08,Eli LeRoy,False,10583.41,187,1,0,0,0,0,0,,,
+2026-08,Paige Madden,False,103190.06,110,37,1,13,5,2,1,6.5,18.5,200.0
+2026-08,Charlotte McCabe,False,6857.47,53,48,10,17,3,0,0,,,0.0
+2026-08,James Nash,False,66679.78,111,49,12,15,1,3,3,5.0,16.33,25.0
+2026-08,Brendan O'Donnell,False,20853.75,3,0,0,0,0,0,0,,,
+2026-08,Michael Salemi,False,152571.55,42,32,11,21,7,2,2,10.5,16.0,18.2
+2026-08,Peter Sleeper,False,0,35,5,0,0,0,0,0,,,
+2026-08,Bryn Vaydik,False,5860.31,75,20,0,1,0,0,0,,,
+2026-08,Hannah Wilkinson,False,147660.65,67,0,17,25,14,3,2,8.33,0.0,17.6
+2026-08,Unassigned / system-owned,False,,0,0,0,0,1,0,0,,,
+2026-09,Jillian Buleha,True,0,0,0,0,1,0,0,0,,,
+2026-09,Jason Endres,False,85267.73,52,42,2,13,3,1,3,13.0,42.0,50.0
+2026-09,Zoe Gomez,False,0,131,20,0,0,0,0,0,,,
+2026-09,House Account,False,26161.47,0,0,0,0,0,0,0,,,
+2026-09,Gertrude Olivia Keane,False,0,67,7,3,3,0,0,0,,,0.0
+2026-09,Ryan Lawler,False,0,67,11,0,0,0,0,0,,,
+2026-09,Eli LeRoy,False,11656.81,130,0,0,0,0,0,0,,,
+2026-09,Paige Madden,False,62472.35,129,33,10,21,6,1,1,21.0,33.0,10.0
+2026-09,Charlotte McCabe,False,5485.62,59,43,10,22,4,0,0,,,0.0
+2026-09,James Nash,False,67793.72,80,51,11,24,3,2,1,12.0,25.5,18.2
+2026-09,Brendan O'Donnell,False,25654.03,12,0,0,0,0,0,0,,,
+2026-09,Michael Salemi,False,140672.31,67,30,13,28,9,4,2,7.0,7.5,30.8
+2026-09,Peter Sleeper,False,0,62,7,0,0,0,0,0,,,
+2026-09,Bryn Vaydik,False,13183.22,52,23,0,0,0,0,1,,,
+2026-09,Hannah Wilkinson,False,148064.49,303,0,15,26,3,1,1,26.0,0.0,6.7
+2026-10,Jillian Buleha,True,,0,0,0,0,0,0,1,,,
+2026-10,Jason Endres,False,,22,26,1,10,0,0,2,,,0.0
+2026-10,Zoe Gomez,False,,91,17,0,0,0,0,0,,,
+2026-10,Gertrude Olivia Keane,False,,38,2,0,1,1,0,0,,,
+2026-10,Ryan Lawler,False,,36,9,0,0,0,0,0,,,
+2026-10,Eli LeRoy,False,,100,0,0,0,0,0,0,,,
+2026-10,Paige Madden,False,,84,26,2,14,0,2,2,7.0,13.0,100.0
+2026-10,Charlotte McCabe,False,,34,25,4,12,5,0,0,,,0.0
+2026-10,James Nash,False,,39,35,2,12,11,3,3,4.0,11.67,150.0
+2026-10,Brendan O'Donnell,False,,4,0,0,0,0,0,0,,,
+2026-10,Michael Salemi,False,,23,17,1,23,8,1,3,23.0,17.0,100.0
+2026-10,Peter Sleeper,False,,15,3,0,0,0,0,0,,,
+2026-10,Bryn Vaydik,False,,37,13,0,0,0,0,0,,,
+2026-10,Hannah Wilkinson,False,,301,0,7,19,7,0,4,,,0.0
+2026-10,Unassigned / system-owned,False,,0,0,0,0,1,0,0,,,

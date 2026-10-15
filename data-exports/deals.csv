@@ -1,0 +1,137 @@
+month,added,candidate,client,job,account_manager,recruiter,start,status
+2026-01,2026-01-16,John Pool,ServiceNow,Technical Consultant: HAM,Salemi,Salemi,2026-01-12,Approved
+2026-01,2026-01-16,Brendan Cody Davis,GDIT,ServiceNow Developer Full Scope Poly (2 openings),O'Donnell,Campbell,2023-08-10,Never Started
+2026-01,2026-01-16,Brendan Cody Davis,GDIT,ServiceNow Developer Full Scope Poly (2 openings),O'Donnell,Campbell,2026-03-02,Approved
+2026-01,2026-01-20,Angel Brown,ATT,IT Field Support Specialist 2- PIPELINE,Buleha,Calabro,2025-09-18,Submitted
+2026-01,2026-01-20,Angel Brown,ATT,IT Field Support Specalist,Buleha,Buleha,2026-03-17,Completed
+2026-01,2026-01-22,Bryce Whisenant,ServiceNow,ServiceNow Developer (DIA),Jenkins,Szemplinski,2026-11-09,Approved
+2026-01,2026-01-23,Richard Finney,BAE Systems,Electrical Systems Engineer Lead,Endres,Halvorsen,2026-03-23,Approved
+2026-01,2026-01-23,Brenda Moll,BAE Systems,Electrical Systems Engineer Lead,Wilkinson,Wilkinson,2026-03-23,Never Started
+2026-01,2026-01-29,Dennis Travers,MIT Lincoln Laboratory,Special Security Representative,Wilkinson,Wilkinson,2026-03-10,Approved
+2026-01,2026-01-30,Jessica Figuereo,ATT,"ServiceNow Developer III (Chantilly, VA)",Madden,Calabro,2026-03-02,Never Started
+2026-01,2026-01-30,John Pool,ServiceNow,SOCOMLead TC for ITAM SAM,Buleha,Buleha,2026-01-20,Approved
+2026-02,2026-02-03,Ross Rozanski,BAE Systems,Modeling and Sim Systems Engineers,Endres,Halvorsen,2026-03-23,Completed
+2026-02,2026-02-06,Yolanda Collier,ATT,"ServiceNow Developer III (Chantilly, VA)",Madden,Madden,2026-03-09,Completed
+2026-02,2026-02-16,Longyang Wu,Smith & Nephew Inc,Sr. Statistician - Med Device Focus,Salemi,Rogers,2026-03-16,Completed
+2026-02,2026-02-25,Kevin Kozlowski,BAE Systems,Electrical Systems Engineer,Endres,Halvorsen,2026-03-24,Approved
+2026-02,2026-02-27,Cynthia Villanueva,JTAGS - Northrop ,"Data Manager (Colorado Springs, CO)",Madden,Calabro,2026-03-16,Completed
+2026-03,2026-03-02,Sarah Godinho,ServiceNow,TC ITSM,Salemi,Salemi,2026-03-09,Approved
+2026-03,2026-03-02,Bill Jennings,Brs-ATT,"Senior Network/Systems Tools Engineer (Chantilly, VA)",Madden,Madden,2026-04-06,Completed
+2026-03,2026-03-13,Ryan Goddard,JTAGS - Northrop ,"Linux Systems Admin (Colorado Springs, CO)",Madden,Garrison,2026-04-13,Completed
+2026-03,2026-03-21,Mark Smith,ISO New England,Lead Microsoft Cloud Engineer Consultant (RFQ 26-06),Salemi,Rogers,2026-06-22,Approved
+2026-03,2026-03-24,Sabir Ahmed,MIT Lincoln Laboratory,RF Engineer,Wilkinson,House,2026-04-21,Never Started
+2026-03,2026-03-26,John Pool,ServiceNow,ITAM SAM (Dept of Air Force),Salemi,Salemi,2026-03-30,Approved
+2026-03,2026-03-27,John Alexander Azuero,General Dynamics Infromation Technology,Geospatial ETL Engineer ,Nash,Garrison,2026-07-13,Never Started
+2026-04,2026-04-01,Thomas Cartwright,BAE Systems,Systems Engineer,Endres,Eames,2026-04-20,Completed
+2026-04,2026-04-01,Muhammad Taimoor,Insulet Corporation,Product Analyst (Job ID 468),Salemi,Rogers,2026-04-20,Approved
+2026-04,2026-04-03,Daniel Chunn,MIT Lincoln Laboratory,Software Engineer,Wilkinson,Wilkinson,2026-05-05,Approved
+2026-04,2026-04-03,Adam Waksman,Smith & Nephew Inc,Sr. Postmarket Specialist - Clinical Development,Salemi,Salemi,2026-04-15,Approved
+2026-04,2026-04-06,Gideon Gish,GDIT,ServiceNow Developer,Nash,Szemplinski,2026-06-15,Approved
+2026-04,2026-04-10,Phannakhim Ly,Insulet Corporation,QC Receiver - 1 opening left (Job ID 490),Salemi,Driscoll,2026-04-27,Completed
+2026-04,2026-04-10,Holly Silva,BAE Systems,Special Programs Support Specialist,Nash,Calabro,2026-05-22,Completed
+2026-04,2026-04-20,Vittoria Santoro,MIT Lincoln Laboratory,Software Engineer,Wilkinson,Szemplinski,2026-06-09,Approved
+2026-04,2026-04-24,Aber Prakash,MIT Lincoln Laboratory,Sr. DevOps Engineer,Wilkinson,Driscoll,2026-06-02,Approved
+2026-04,2026-04-27,Kim Kresge,ServiceNow,ServiceNow Developer (DIA),Vaydik,Daly,2026-09-01,Never Started
+2026-04,2026-04-29,Simranjeet Singh,ServiceNow,Sr. Technical Consultant (ITSM),Salemi,Salemi,2026-07-26,Approved
+2026-04,2026-04-30,Renee Frye,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-11,Completed
+2026-04,2026-04-30,Brayonna Towns,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-11,Never Started
+2026-04,2026-04-30,Dillon Smith,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-11,Completed
+2026-04,2026-05-01,Tanyeka Morrison,Insulet Corporation,Vigilance Writer - 2 openings (Job ID 494),Salemi,Driscoll,2026-06-01,Approved
+2026-04,2026-05-01,Jennifer Ristuccia,Insulet Corporation,Vigilance Writer (Job ID 535),Salemi,Rogers,2026-05-26,Approved
+2026-04,2026-05-01,Kimberly Childs,Insulet Corporation,Complaint Evaluation Specialist (Job ID 537),Salemi,Rogers,2026-05-26,Completed
+2026-04,2026-05-01,Tyler Black,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-18,Completed
+2026-04,2026-05-01,Jordan Huynh,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-11,Approved
+2026-05,2026-05-05,Brenda Hammond,Insulet Corporation,Vigilance Writer (Job ID 535),Salemi,Rogers,2026-05-18,Completed
+2026-05,2026-05-05,Aekta Patel,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-18,Completed
+2026-05,2026-05-05,Kanishka Vatsa,Insulet Corporation,Product Manager - Digital CX (Job ID 524)),Salemi,Rogers,2026-06-01,Approved
+2026-05,2026-05-06,Duane Ebersole,MIT Lincoln Laboratory,Senior System Administrator,Wilkinson,Daly,2026-06-16,Approved
+2026-05,2026-05-06,Michael Madden,BAE Systems Inc,Motion GEOINT Specialist,Nash,Garrison,2026-06-10,Approved
+2026-05,2026-05-06,Nicole Lapp-Alicea,Insulet Corporation,Complaint Evaluation Specialist (Job ID 537),Salemi,Rogers,2026-05-18,Completed
+2026-05,2026-05-06,Linda Amoah,Insulet Corporation,Complaint Evaluation Specialist (Job ID 537),Salemi,Rogers,2026-05-26,Completed
+2026-05,2026-05-06,Shaun-Aurelius Pinzon,Insulet Corporation,Complaint Determination Associate (Job ID 534),Salemi,Driscoll,2026-05-18,Completed
+2026-05,2026-05-07,Connor Taylor,BAE Systems Inc,Motion GEOINT Specialist,Nash,Calabro,2026-10-26,Approved
+2026-05,2026-05-08,Anthony Alcala,MIT Lincoln Laboratory,System Administrator,Wilkinson,Halvorsen,2026-06-23,Approved
+2026-05,2026-05-08,Christopher Miller,Brs-ATT,"Network Designer (Chantilly, VA) 3 OPENINGS",Madden,Madden,2026-06-15,Never Started
+2026-05,2026-05-08,David Raia,Insulet Corporation,Associate Failure Analysis Engineer (Job ID 548),Salemi,Rogers,2026-05-26,Completed
+2026-05,2026-05-09,Adarsh Rajana,Insulet Corporation,Associate Failure Analysis Engineer (Job ID 548),Salemi,Rogers,2026-06-01,Approved
+2026-05,2026-05-11,Stephan Dew,ServiceNow,BPC SPM,Salemi,Salemi,2026-06-16,Approved
+2026-05,2026-05-11,Jonathan Fernandez,Insulet Corporation,Associate Failure Analysis Engineer (Job ID 548),Salemi,Rogers,2026-05-26,Approved
+2026-05,2026-05-12,John Lombardo,ServiceNow,ServiceNow Developer (DIA),Vaydik,Campbell,2026-09-01,Never Started
+2026-05,2026-05-14,Alex Ngan,Insulet Corporation,Human Factors Engineer (Job ID 527),Salemi,Driscoll,2026-06-08,Approved
+2026-05,2026-05-15,Christopher Jacques,Insulet Corporation,Associate Failure Analysis Engineer (Job ID 548),Salemi,Rogers,2026-06-01,Never Started
+2026-05,2026-05-15,Daniel Simpson,Brs-ATT,"Network Designer (Chantilly, VA) 3 OPENINGS",Madden,Calabro,2026-06-22,Approved
+2026-05,2026-05-18,Devin Robinson,BAE Systems Inc,FMV Analyst,Nash,Garrison,2026-06-23,Approved
+2026-05,2026-05-18,Logan Trahan,BAE Systems Inc,Sr Imagery Analyst,Nash,Garrison,2026-06-08,Never Started
+2026-05,2026-05-22,Brendan Deroo,MIT Lincoln Laboratory,Software Developer,Wilkinson,Szemplinski,2026-07-07,Approved
+2026-05,2026-05-26,Stephan Dew,ServiceNow,BPC SPM (Req for Stephan Dew 2nd placement),Salemi,Salemi,2026-07-15,Approved
+2026-05,2026-05-29,Zhiyuan Xu,Smith & Nephew Inc,Sr. Statistician - Med Device Focus,Salemi,Rogers,2026-06-15,Approved
+2026-06,2026-06-02,John Kirby,BAE Systems,FPGA Engineer,Wilkinson,House,2026-07-13,Never Started
+2026-06,2026-06-04,Candelario Baez,Insulet Corporation,Staff Solution Program Manager (Job ID 550),Salemi,Rogers,2026-06-08,Approved
+2026-06,2026-06-08,Sarah Godinho,ServiceNow,Sr. TC  - Part Time (Sarah Godinho 2nd offer req),Salemi,Salemi,2026-07-01,Approved
+2026-06,2026-06-08,Zachery Spears,Brs-ATT,"Incident Manager II (Aurora, CO)",Madden,Garrison,2026-07-20,Never Started
+2026-06,2026-06-09,Steven Oden,MIT Lincoln Laboratory,Software/Systems Engineer,Wilkinson,Cote,2026-09-15,Approved
+2026-06,2026-06-10,Paul Serino,Allegro Microsystems,EHSS Engineer,Salemi,Salemi,2026-06-23,Approved
+2026-06,2026-06-10,Tyler Weitzel,MIT Lincoln Laboratory,Software Engineer ,Wilkinson,Daly,2026-08-25,Approved
+2026-06,2026-06-10,Reginald Walden,Brs-ATT,"Incident Manager II (Aurora, CO)",Madden,Garrison,2026-08-10,Approved
+2026-06,2026-06-15,Amaya Kitchen,BAE Systems Inc,FMV Analyst,Nash,Campbell,2026-08-25,Never Started
+2026-06,2026-06-16,Allison Roney,BAE Systems,Electrical Systems Engineer ,Szemplinski,Halvorsen,2026-07-13,Never Started
+2026-06,2026-06-17,Nicholas Cooper,MIT Lincoln Laboratory,Mechanical Engineer,Wilkinson,Eames,2026-07-28,Approved
+2026-06,2026-06-18,Muhammad Ali,ServiceNow,"Sr. Technical Consultant (Public Trust, Ali Raja offer)",Salemi,Salemi,2026-06-25,Completed
+2026-06,2026-06-19,Brian Ayers,BAE Systems Inc,Sr Imagery Analyst,Nash,Garrison,2026-07-24,Approved
+2026-06,2026-06-22,Matthew Tuschhoff,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-08-04,Never Started
+2026-06,2026-06-24,Paul Sagnay,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-08-25,Completed
+2026-06,2026-06-25,Juanita (Janie) Martinez,BAE Systems Inc,Project Engineer,Endres,Campbell,2026-07-13,Approved
+2026-06,2026-06-25,Ryan Fuqua,BAE Systems Inc,FMV Analyst,Nash,Garrison,2026-11-02,Never Started
+2026-06,2026-06-25,Derek Blankenship,Smith & Nephew Inc,"Director, Clinical Statistics (Global)",Salemi,Salemi,2026-07-20,Approved
+2026-06,2026-06-25,Benjamin Mahon,Insulet Corporation,Sr. Post Market Data Analyst - 3 openings (Job ID 554),Salemi,Driscoll,2026-08-10,Completed
+2026-06,2026-06-26,Efosa Airen,BAE Systems,Electrical Systems Engineer,Endres,Kyhos,2026-08-25,Approved
+2026-07,2026-06-29,Corey Hirsch,ServiceNow,ServiceNow Developer DIA,Vaydik,House,2026-10-26,Never Started
+2026-07,2026-06-29,Max Morganti,ServiceNow,ServiceNow Developer - DIA,Vaydik,Szemplinski,2026-09-24,Approved
+2026-07,2026-06-30,Juan Cruz,BAE Systems Inc,FMV Analyst,Nash,Szemplinski,2026-08-25,Never Started
+2026-07,2026-07-01,Andrew Weeks,MIT Lincoln Laboratory,Software Engineer,Wilkinson,Daly,2026-10-27,Approved
+2026-07,2026-07-02,Myles Ervin,BAE Systems Inc,FMV Analyst,Nash,Garrison,2026-08-04,Never Started
+2026-07,2026-07-06,Matthew Eaken,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-11-10,Never Started
+2026-07,2026-07-07,Sydnie Chen,Insulet Corporation,Associate UX Designer (Job ID 541),Salemi,Driscoll,2026-08-03,Approved
+2026-07,2026-07-08,Gil Rufo,MIT Lincoln Laboratory,Modeling and Simultation Software Engineer,Wilkinson,Szemplinski,2026-08-18,Approved
+2026-07,2026-07-09,Dylan Goins,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-08-25,Completed
+2026-07,2026-07-10,Colin Mulcahy,MIT Lincoln Laboratory,Systems Administrator ,Wilkinson,Kyhos,2026-10-27,Approved
+2026-07,2026-07-13,Eliza Henry-Mullins,BAE Systems Inc,Imagery Analyst ,Nash,Daly,2026-08-10,Approved
+2026-07,2026-07-13,Joshua Kraftchick,GDIT,Infrastructure Lead (Yoda-0035),Nash,Campbell,2026-09-08,Approved
+2026-07,2026-07-17,Ryan Pinkney,ServiceNow,ServiceNow Gov-L,Vaydik,Vaydik,2026-07-16,Approved
+2026-07,2026-07-17,Erick Jerez,BAE Systems Inc,Junior GEOINT Analyst,Nash,Daly,2026-08-05,Never Started
+2026-07,2026-07-17,Anton Bichler,BAE Systems Inc,Junior GEOINT Analyst,Nash,Garrison,2026-08-17,Never Started
+2026-07,2026-07-21,Timothy Sutton,BAE Systems Inc,Electronic Systems Engineer,Endres,Kyhos,2026-08-31,Approved
+2026-07,2026-07-22,Dominick Velez,MIT Lincoln Laboratory,RF Engineer,Wilkinson,Szemplinski,2026-09-01,Never Started
+2026-07,2026-07-23,Sebastian Arriaga,BAE Systems Inc,FMV Analyst,Nash,Garrison,2026-10-26,Approved
+2026-07,2026-07-29,Avraham Felzenstein,ISO New England,Senior Full Stack Java Developer Consultant (RFQ 26-04),Salemi,Driscoll,2026-09-01,Approved
+2026-07,2026-07-30,Sophia Yan,MIT Lincoln Laboratory,Communications System Engineer,Wilkinson,House,2026-09-08,Never Started
+2026-08,2026-08-06,Prady Reddy,CDW Corporation,ServiceNow Developer,Wilkinson,Cenower,2026-07-27,Completed
+2026-08,2026-08-06,Prady Reddy,CDW Corporation,ServiceNow Developer,Wilkinson,Cenower,2022-03-23,Completed
+2026-08,2026-08-07,Jerry Darko,BAE Systems Inc,FPGA Design,Endres,Kyhos,2026-08-31,Approved
+2026-08,2026-08-11,James Abert,MIT Lincoln Laboratory,Mechanical Engineer ,Wilkinson,Halvorsen,2026-10-20,Approved
+2026-08,2026-08-13,Jeremiah Gadson,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-12-14,Approved
+2026-08,2026-08-14,Jacob Larson,BAE Systems,Thermal Engineer,Endres,LeRoy,2026-10-19,Approved
+2026-08,2026-08-14,Derek Taylor,BAE Systems,Thermal Engineer,Endres,Szemplinski,2026-11-16,Approved
+2026-08,2026-08-19,Dominik Walls,BAE Systems Inc,FMV Analyst,Nash,LeRoy,2026-10-27,Never Started
+2026-08,2026-08-21,Eric Sadowski,BAE Systems,Thermal Engineer,Endres,Kyhos,2026-09-21,Approved
+2026-08,2026-08-21,Jason Eckert,Insulet Corporation,Product Owner (Job ID 611),Salemi,Salemi,2026-09-14,Never Started
+2026-08,2026-08-24,Jessa Wapner,ISO New England,Audit Assistant Consultant (RFQ 26-09),Salemi,Rogers,2026-09-21,Never Started
+2026-08,2026-08-25,Max Morganti,ATT,"ServiceNow Developer III (Chantilly, VA)",Madden,Szemplinski,2026-09-14,Approved
+2026-08,2026-08-26,Joshua Barua,BAE Systems,Thermal Engineer,Endres,Kyhos,2026-10-19,Approved
+2026-08,2026-08-27,William H,Brs-ATT,"Command & Telemetry Engineer (Chantilly, VA)",Madden,Garrison,2026-09-21,Never Started
+2026-08,2026-08-28,Destiny Hoipkemier,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-10-09,Never Started
+2026-09,2026-08-31,Camile Gonzaga,Insulet Corporation,Senior Employee Relation Specialist (Job ID 648),Salemi,Rogers,2026-09-21,Approved
+2026-09,2026-09-04,Max Potter,MIT Lincoln Laboratory,Software Developer,Wilkinson,Szemplinski,2026-10-20,Approved
+2026-09,2026-09-08,Todd Plourde,ISO New England,AI Program Governance Consultant (RFQ 26-16 (Event 176),Salemi,Rogers,2026-10-26,Approved
+2026-09,2026-09-16,Matt Munns,BAE Systems,Thermal Engineer ,Endres,Szemplinski,2026-11-02,Never Started
+2026-09,2026-09-17,Shelbin Cheriyan,ISO New England,Senior Full Stack Java Developer Consultant (RFQ 26-04),Salemi,Driscoll,2026-10-15,Approved
+2026-09,2026-09-17,Rami Elkhoury,Insulet Corporation,Senior Functional Analyst - 2 openings (Job ID 637),Salemi,Rogers,2026-10-05,Approved
+2026-09,2026-09-22,Saule Bohoney,Vanguard - Booz Allen Hamilton ,"ServiceNow Developer (Chantilly, VA)",Madden,Calabro,2026-10-26,Approved
+2026-09,2026-09-22,Trevor Gardner,BAE Systems,Special Programs Support Specialist,Nash,Calabro,2026-11-02,Approved
+2026-09,2026-09-22,Madison Wolf,BAE Systems Inc,FMV Analyst,Nash,Daly,2026-12-07,Submitted
+2026-10,2026-09-28,Stephan Mirambeau,Brs-ATT,"Core Network Engineer (Chantilly, VA)",Madden,Garrison,2026-10-19,Approved
+2026-10,2026-09-29,Mike Gordon,ATT,"ServiceNow Developer III (Chantilly, VA)",Madden,Madden,2026-11-23,Never Started
+2026-10,2026-10-07,Athanasious Ashu,General Dynamics Information Technology,Security Control Assessor,Nash,Campbell,2026-10-26,Approved
+2026-10,2026-10-07,Lauren Flowers,Insulet Corporation,Sr. Medical Affairs Specialist (Job ID 697),Salemi,Rogers,2026-11-02,Approved
+2026-10,2026-10-14,Andrew Hershey,L3Harris Technologies,Software DevOps Engineer,Nash,Wilkinson,2026-11-30,Approved
+2026-10,2026-10-14,Sean Tan,GDIT,Full Stack Engineer,Nash,Garrison,2026-11-02,Approved

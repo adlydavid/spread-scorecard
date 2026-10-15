@@ -1,0 +1,25 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # @netlify/blobs (used by the upload functions) needs Node 22
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  included_files = ["shared/**"]
+
+# Local: `npm run dev:netlify` runs Vite plus the functions at http://localhost:8888
+[dev]
+  command = "npx vite --port 5199 --strictPort"
+  targetPort = 5199
+  port = 8888
+  framework = "#custom"
+  autoLaunch = true
+
+[[headers]]
+  for = "/admin.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+    Cache-Control = "no-store"
