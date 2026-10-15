@@ -4,7 +4,8 @@
   --navy:#1b2a4b; --navy-2:#27406f; --navy-ink:#ffffff; --navy-muted:#aab6cf;
   --tint:#eef1f6; --bar:#c3cddd; --bar-on:#27406f;
   --good-bg:#e2f1e5; --good:#2c6a3d; --warn-bg:#fbf0d4; --warn:#87610e; --bad-bg:#f8e0df; --bad:#9a2d2b;
-  --live:#3f9a5b; --focus:#3b6fd8;
+  --live:#3f9a5b; --focus:#3b6fd8; --zebra:#f7f9fc; --row-hover:#e8eef8;
+  --acc-top:#b07d12; --acc-gain:#2c6a3d; --acc-ratio:#3b6fd8; --acc-act:#7a4fc4;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
 }
@@ -13,14 +14,16 @@
   --navy:#1b2a4b; --navy-2:#2c4578; --navy-ink:#ffffff; --navy-muted:#aab6cf;
   --tint:#1c2433; --bar:#38445c; --bar-on:#7f9fdc;
   --good-bg:#16301f; --good:#8fd1a0; --warn-bg:#33290f; --warn:#e5c46a; --bad-bg:#3a1b1d; --bad:#f0a3a1;
-  --live:#5cc07a; --focus:#7fa6ff; color-scheme:dark}}
+  --live:#5cc07a; --focus:#7fa6ff; --zebra:#1a2030; --row-hover:#232d41;
+  --acc-top:#e2b955; --acc-gain:#8fd1a0; --acc-ratio:#7fa6ff; --acc-act:#b79cf0; color-scheme:dark}}
 :root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{
   --ground:#0e131d; --sheet:#161c29; --ink:#e5e9f1; --muted:#9aa4b8; --line:#252d3d; --rule:#313b4f;
   --navy:#1b2a4b; --navy-2:#2c4578; --navy-ink:#ffffff; --navy-muted:#aab6cf;
   --tint:#1c2433; --bar:#38445c; --bar-on:#7f9fdc;
   --good-bg:#16301f; --good:#8fd1a0; --warn-bg:#33290f; --warn:#e5c46a; --bad-bg:#3a1b1d; --bad:#f0a3a1;
-  --live:#5cc07a; --focus:#7fa6ff; color-scheme:dark}
+  --live:#5cc07a; --focus:#7fa6ff; --zebra:#1a2030; --row-hover:#232d41;
+  --acc-top:#e2b955; --acc-gain:#8fd1a0; --acc-ratio:#7fa6ff; --acc-act:#b79cf0; color-scheme:dark}
 html,body{background:var(--ground)}
 body{color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
@@ -110,23 +113,33 @@ input.field{width:190px;max-width:100%}
 
 /* sheet */
 .sheet{background:var(--sheet);border-radius:4px;box-shadow:0 1px 2px rgba(20,30,50,.08),0 8px 24px rgba(20,30,50,.06);overflow:hidden}
-.mast{background:var(--navy);color:var(--navy-ink);padding:26px 44px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end}
+/* Masthead: a subtle diagonal navy gradient (stops 60% of the way to --navy-2, so muted text stays above 5.4:1 in both themes)
+   and a faint top highlight. The title is the hero; the month and sources sit quieter on the right. */
+.mast{background-color:var(--navy);background-image:linear-gradient(120deg,var(--navy) 30%,color-mix(in srgb,var(--navy),var(--navy-2) 60%));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09);color:var(--navy-ink);padding:28px 44px 26px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end}
 .eyebrow{font-family:var(--f-cond);font-weight:600;letter-spacing:.24em;font-size:13px;color:var(--navy-muted);text-transform:uppercase}
-.mast h1{margin:2px 0 0;font-family:var(--f-cond);font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
-.mast .right{text-align:right;display:flex;flex-direction:column;gap:3px}
-.mast .month{font-family:var(--f-cond);font-weight:700;font-size:26px}
-.mast .sub{color:#dfe5f2;font-weight:500;font-size:15px}
-.mast .src{color:var(--navy-muted);font-size:14px}
+.mast h1{margin:4px 0 0;font-family:var(--f-cond);font-weight:700;font-size:46px;line-height:1;letter-spacing:-.015em;text-wrap:balance}
+.mast .right{text-align:right;display:flex;flex-direction:column;gap:2px;padding-bottom:3px}
+.mast .month{font-family:var(--f-cond);font-weight:600;font-size:20px;letter-spacing:.01em;color:#dfe5f2}
+.mast .sub{color:#dfe5f2;font-weight:400;font-size:14px}
+.mast .src{color:var(--navy-muted);font-size:12.5px;letter-spacing:.01em}
 
-.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-bottom:1px solid var(--line)}
-.kpi{padding:16px 22px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+/* KPI strip: Spread (first tile, .primary) is wider and tinted with an accent rule; the change vs last month is a chip */
+.kpis{display:grid;grid-template-columns:minmax(0,1.55fr) repeat(var(--n,5),minmax(0,1fr));border-bottom:1px solid var(--line)}
+.kpi{padding:16px 22px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.kpi > *{max-width:100%}
 .kpi:last-child{border-right:0}
 .kpi .lab{font-family:var(--f-cond);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.kpi .val{font-size:30px;font-weight:700;line-height:1.15}
+.kpi .val{font-family:var(--f-cond);font-variant-numeric:tabular-nums;font-size:clamp(28px,2.7vw,36px);font-weight:700;line-height:1.1;letter-spacing:-.01em}
 .kpi .note{font-size:13.5px;color:var(--muted)}
-.kpi .delta{font-size:13px;font-weight:600;color:var(--muted)}
-.kpi .delta.up{color:var(--good)}
-.kpi .delta.down{color:var(--bad)}
+.kpi.primary{background:var(--tint);box-shadow:inset 3px 0 0 var(--bar-on)}
+.kpi.primary .val{font-size:clamp(36px,3.5vw,46px);line-height:1.02}
+.kpi.primary .tgt{width:100%}
+.kpi .delta{display:inline-flex;align-items:center;margin-top:6px;padding:2px 9px;border-radius:999px;background:var(--tint);
+  font-size:12.5px;font-weight:600;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi.primary .delta{background:var(--sheet)}
+.kpi .delta.up{background:var(--good-bg);color:var(--good)}
+.kpi .delta.down{background:var(--bad-bg);color:var(--bad)}
 .kpi .delta.pace{font-weight:500}
 /* progress toward the monthly target (only when the admin has set one) */
 .tgt{margin-top:6px}
@@ -141,14 +154,21 @@ thead tr:last-child th.tcol{padding:9px 8px;text-align:right}
 
 /* highlights: cards under the KPI strip, each opens that person's history */
 .hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;padding:14px 44px;border-bottom:1px solid var(--line)}
-.hlc{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:1px;min-width:0;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--tint);cursor:pointer;transition:border-color .15s,background .15s}
-.hlc:hover{border-color:var(--rule);background:var(--sheet)}
+/* Highlight cards: award style, with a colored strip and icon per kind (--acc), the name in bold and the value large */
+.hlc{all:unset;box-sizing:border-box;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:2px;min-width:0;padding:13px 14px 11px;
+  border:1px solid var(--line);border-radius:10px;background:var(--sheet);cursor:pointer;box-shadow:0 1px 2px rgba(20,30,50,.05);
+  transition:border-color .15s,box-shadow .15s,transform .15s}
+.hlc::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--acc)}
+.hlc.k-top{--acc:var(--acc-top)} .hlc.k-gain{--acc:var(--acc-gain)} .hlc.k-ratio{--acc:var(--acc-ratio)} .hlc.k-act{--acc:var(--acc-act)}
+.hlc:hover{border-color:var(--rule);box-shadow:0 4px 14px rgba(20,30,50,.10);transform:translateY(-1px)}
+@media (prefers-reduced-motion:reduce){.hlc,.hlc:hover{transition:none;transform:none}}
 .hlc:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.hlc .lab{font-family:var(--f-cond);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.hlc .who{font-weight:700;font-size:16px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hlc .hv{font-weight:600;font-size:14px;color:var(--ink)}
-.hlc .hn{font-weight:400;color:var(--muted)}
-.hlc .hn::before{content:" · "}
+.hhead{display:flex;align-items:center;gap:6px;min-width:0}
+.hico{flex:0 0 auto;width:15px;height:15px;fill:none;stroke:var(--acc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hlc .lab{font-family:var(--f-cond);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hlc .who{margin-top:4px;font-weight:700;font-size:15px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hlc .hv{font-family:var(--f-cond);font-variant-numeric:tabular-nums;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.hlc .hn{font-size:12.5px;font-weight:400;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .months{padding:18px 44px 8px;border-bottom:1px solid var(--line)}
 .sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 .sechead h2{margin:0;font-family:var(--f-cond);font-weight:700;font-size:19px;letter-spacing:.16em;text-transform:uppercase}
@@ -176,8 +196,9 @@ thead tr:last-child th.tcol{padding:9px 8px;text-align:right}
 .colpop .field.small{margin-top:6px;align-self:flex-start}
 @media screen{
   .people-table.compact tbody td{padding-top:2px;padding-bottom:2px}
-  .people-table.compact td.trend{padding-top:0;padding-bottom:0}
   .people-table.compact thead th button{padding-top:6px;padding-bottom:6px}
+  .people-table.compact tr.total td{padding-top:5px;padding-bottom:4px}
+  .people-table.compact .ini{width:18px;height:18px;font-size:9px;margin-right:7px}
 }
 .dtools{display:flex;margin-top:12px}
 .chartbox{overflow-x:auto;margin-top:6px}
@@ -195,7 +216,15 @@ thead tr:last-child th.tcol{padding:9px 8px;text-align:right}
 .chart .hit{fill:transparent}
 .chart g.m:focus-visible .hit{stroke:var(--focus);stroke-width:2}
 .chart .avg{stroke:var(--muted);stroke-width:1.25;stroke-dasharray:5 4;pointer-events:none}
-.chart .tline{stroke:var(--good);stroke-width:2;stroke-linecap:round;pointer-events:none}
+.chart .tline{stroke:var(--good);stroke-width:2;stroke-dasharray:5 3;pointer-events:none}
+.chart .tcap{stroke:var(--good);stroke-width:2;stroke-linecap:round;pointer-events:none}
+/* month chart: bars fill with a subtle top-to-bottom gradient; the selected month gets a soft halo */
+.months .chart .bar{fill:url(#mcG)}
+.months .chart .bar.on{fill:url(#mcGon)}
+.months .chart .gs{stop-color:var(--bar)}
+.months .chart .gs.on{stop-color:var(--bar-on)}
+.months .chart .gs.lo{stop-opacity:.72}
+.months .chart .halo{fill:var(--bar-on);fill-opacity:.14;pointer-events:none}
 .chart .tlab{fill:var(--good)}
 .chart .mline{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-opacity:.7;pointer-events:none}
 .chart .mdot{fill:var(--sheet);stroke:var(--muted);stroke-width:1.5;pointer-events:none}
@@ -219,7 +248,7 @@ thead th .arr{opacity:.7;margin-left:4px;font-size:10px}
 thead th.grp{background:var(--navy);text-align:center;font-size:11px;letter-spacing:.18em;padding:6px 10px;color:var(--navy-muted)}
 tbody td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 tbody td:first-child{text-align:left;font-weight:500}
-tbody tr:hover td{background:var(--tint)}
+tbody tr:hover td{background:var(--row-hover)}
 td .tag, .pcard .tag{display:inline-block;margin-left:8px;font-family:var(--f-cond);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:4px;padding:0 5px;vertical-align:1px}
 td.zero{color:var(--muted)}
 td.sp{min-width:142px}
@@ -229,30 +258,42 @@ td.sp{min-width:142px}
 .spw{display:flex;align-items:center;gap:10px;justify-content:flex-end}
 .spbar{height:6px;border-radius:3px;background:var(--bar-on);opacity:.55;flex:0 0 auto}
 td.r{font-weight:600}
-/* Trend: sparkline of the last 6 months' spread, beside Spread */
-thead th.trend{padding:9px 6px;text-align:center}
-td.trend{padding:4px 6px;width:64px}
-.spark{display:block;margin:0 auto;overflow:visible}
-.spark .sl{stroke:var(--muted);stroke-width:1.3;stroke-linecap:round}
-.spark .sl.part{stroke-dasharray:2 2}
-.spark .sd{fill:var(--bar-on)}
-tr.total .spark .sl{stroke:var(--ink)}
-td.good{background:var(--good-bg);color:var(--good)}
-td.warn{background:var(--warn-bg);color:var(--warn)}
-td.bad{background:var(--bad-bg);color:var(--bad)}
-tr.total td{border-top:2px solid var(--navy-2);border-bottom:0;font-weight:700;background:var(--tint)}
+
+/* Grades: a small marker before the number, which stays in --ink. Shape as well as color tells them apart:
+   circle = at or better than team, diamond = up to 50% worse, square = more than 50% worse, dashed ring = too few. */
+td.good::before,td.warn::before,td.bad::before,td.few::before,
+.pcard-cell.good .pcard-cval::before,.pcard-cell.warn .pcard-cval::before,.pcard-cell.bad .pcard-cval::before,.pcard-cell.few .pcard-cval::before,
+.sw::before{content:"";display:inline-block;width:7px;height:7px;margin-right:7px;vertical-align:1px;box-sizing:border-box}
+td.good::before,.pcard-cell.good .pcard-cval::before,.sw.good::before{background:var(--good);border-radius:50%}
+td.warn::before,.pcard-cell.warn .pcard-cval::before,.sw.warn::before{background:var(--warn);transform:rotate(45deg) scale(.9);border-radius:1px}
+td.bad::before,.pcard-cell.bad .pcard-cval::before,.sw.bad::before{background:var(--bad);border-radius:1px}
+td.few::before,.pcard-cell.few .pcard-cval::before,.sw.few::before{border:1.5px dashed var(--muted);border-radius:50%}
+tr.total td{border-top:0;border-bottom:0;font-weight:700;background:var(--tint)}
 /* people table: name column sticks while scrolling sideways; main.js adds .scrolled to show the edge shadow */
 .tablebox.sticky tbody td:first-child,.tablebox.sticky thead th:first-child{position:sticky;left:0;z-index:1}
 .tablebox.sticky tbody td:first-child{background:var(--sheet)}
-.tablebox.sticky tbody tr:hover td:first-child,.tablebox.sticky tr.total td:first-child{background:var(--tint)}
+.tablebox.sticky tbody tr:hover td:first-child{background:var(--row-hover)}
+.tablebox.sticky tr.total td:first-child{background:var(--tint)}
 .tablebox.sticky.scrolled tbody td:first-child,.tablebox.sticky.scrolled thead th:first-child{box-shadow:6px 0 6px -4px rgba(10,16,30,.22)}
+/* People table rhythm: faint zebra rows, a smooth hover, and the Team total set off by a 2px rule drawn as an inset
+   shadow (a collapsed border breaks up on the sticky name cell when the table scrolls sideways) */
+.people-table tbody td{transition:background-color .12s ease-out}
+@media (prefers-reduced-motion:reduce){.people-table tbody td{transition:none}}
+.people-table tbody tr:nth-child(even):not(.total) td{background:var(--zebra)}
+.people-table tbody tr:not(.total):hover td{background:var(--row-hover)}
+.people-table tr.total td{box-shadow:inset 0 2px 0 var(--ink);padding-top:10px;padding-bottom:9px}
+.tablebox.sticky.scrolled tr.total td:first-child{box-shadow:inset 0 2px 0 var(--ink),6px 0 6px -4px rgba(10,16,30,.22)}
+/* initials before each name; blank spacers keep Team total and Unassigned aligned with the names */
+.ini{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin-right:9px;vertical-align:middle;border-radius:50%;
+  background:var(--tint);border:1px solid var(--rule);color:var(--navy-2);font-family:var(--f-cond);font-size:10px;font-weight:700;letter-spacing:.02em;
+  box-sizing:border-box;flex:0 0 auto;position:relative;top:-1px}
+:root[data-theme="dark"] .ini{color:var(--bar-on)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ini{color:var(--bar-on)}}
+.ini.blank{visibility:hidden}
+tr.former .ini{opacity:.55}
 tr.other td{color:var(--muted);font-style:italic}
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:13.5px;align-items:center}
-.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
-.sw.good{background:var(--good-bg);border:1px solid var(--good)}
-.sw.warn{background:var(--warn-bg);border:1px solid var(--warn)}
-.sw.bad{background:var(--bad-bg);border:1px solid var(--bad)}
-.sw.few{background:var(--sheet);border:1px dashed var(--muted)}
+.sw{display:inline-block;line-height:0;vertical-align:1px}
 td.few{color:var(--muted);font-weight:500}
 /* card view for people table (shown on phone < 640px) */
 .card-controls,.pcards{display:none}
@@ -321,12 +362,12 @@ body:has(dialog.drawer[open]){overflow:hidden}
 }
 @media (max-width:900px){
   .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kpi.primary .val{font-size:38px}
   .kpi:nth-child(3n){border-right:0}
   .kpi:nth-child(-n+3){border-bottom:1px solid var(--line)}
 }
 @media (max-width:640px){
   body{padding-block:16px 32px}
-  th.trend,td.trend{display:none}
   .people-table{display:none}
   .ptools .density,.ptools .colpick{display:none} /* phones get cards, not the table */
   .card-controls{display:flex;align-items:center;gap:8px;margin-bottom:4px}
@@ -358,12 +399,7 @@ body:has(dialog.drawer[open]){overflow:hidden}
   .pcard-clab{font-family:var(--f-cond);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .pcard-cval{font-size:14.5px;font-weight:600;color:var(--ink);white-space:nowrap}
 
-  .pcard-cell.good{background:var(--good-bg)}
-  .pcard-cell.good .pcard-clab,.pcard-cell.good .pcard-cval{color:var(--good)}
-  .pcard-cell.warn{background:var(--warn-bg)}
-  .pcard-cell.warn .pcard-clab,.pcard-cell.warn .pcard-cval{color:var(--warn)}
-  .pcard-cell.bad{background:var(--bad-bg)}
-  .pcard-cell.bad .pcard-clab,.pcard-cell.bad .pcard-cval{color:var(--bad)}
+  .pcard-cell.good .pcard-cval::before,.pcard-cell.warn .pcard-cval::before,.pcard-cell.bad .pcard-cval::before,.pcard-cell.few .pcard-cval::before{margin-right:6px}
   .pcard-cell.few{background:var(--sheet);border-color:var(--rule);border-style:dashed}
   .pcard-cell.few .pcard-cval{color:var(--muted);font-weight:500}
   .pcard-cell.zero .pcard-cval{color:var(--muted)}
@@ -371,17 +407,18 @@ body:has(dialog.drawer[open]){overflow:hidden}
   .banner{padding:9px 14px;font-size:13px;gap:8px 10px;flex-wrap:wrap}
 
   .hl{padding:12px 16px;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .hlc{padding:8px 10px}
+  .hlc{padding:11px 10px 9px}
   .hlc .who{font-size:14.5px}
-  .hlc .hn{display:block}
-  .hlc .hn::before{content:none}
+  .hlc .hv{font-size:22px}
   .mast{padding:16px 16px 18px;gap:10px 24px}
-  .mast h1{font-size:26px}
-  .mast .month{font-size:20px}
-  .mast .sub,.mast .src{font-size:13px}
+  .mast h1{font-size:30px}
+  .mast .month{font-size:17px}
+  .mast .sub{font-size:13px}
+  .mast .src{font-size:12px}
   .mast .right{text-align:left}
   .kpi{padding:12px 16px}
-  .kpi .val{font-size:24px}
+  .kpi .val{font-size:26px}
+  .kpi.primary .val{font-size:30px}
   .months,.people,details{padding-left:16px;padding-right:16px}
   .status{margin-left:0}
   input.field{width:100%}
@@ -409,6 +446,18 @@ body:has(dialog.drawer[open]){overflow:hidden}
 /* print: landscape Letter, light theme, controls hidden, every section expanded (main.js opens the <details>) */
 .printbtn{cursor:pointer;font-weight:600}
 .printbtn:hover{background:var(--tint)}
+/* Motion (main.js decides when): sections fade up on first load; chart bars grow from the baseline on a new month or tab */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:no-preference){
+  #body.enter > *{animation:secIn .45s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+  .months .chart.grow .bar,.months .chart.grow .pend,.months .chart.grow .halo{transform-box:fill-box;transform-origin:50% 100%;
+    animation:barGrow .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 28ms)}
+  .months .chart.grow g.m text{animation:secFade .3s ease-out both;animation-delay:calc(var(--i,0) * 28ms + 260ms)}
+}
+@keyframes secIn{from{opacity:0;transform:translateY(8px)}}
+@keyframes secFade{from{opacity:0}}
+@keyframes barGrow{from{transform:scaleY(0)}}
+@media print{ *,*::before,*::after{animation:none!important;transition:none!important} }
 @media print{
   @page{size:letter landscape;margin:.3in .4in}
   :root:root:root{
@@ -416,40 +465,48 @@ body:has(dialog.drawer[open]){overflow:hidden}
     --navy:#1b2a4b; --navy-2:#27406f; --navy-ink:#ffffff; --navy-muted:#aab6cf;
     --tint:#eef1f6; --bar:#c3cddd; --bar-on:#27406f;
     --good-bg:#e2f1e5; --good:#2c6a3d; --warn-bg:#fbf0d4; --warn:#87610e; --bad-bg:#f8e0df; --bad:#9a2d2b;
+    --zebra:#f7f9fc; --row-hover:#e8eef8;
+    --acc-top:#b07d12; --acc-gain:#2c6a3d; --acc-ratio:#3b6fd8; --acc-act:#7a4fc4;
     color-scheme:light}
   html,body{background:#fff}
   body{padding:0;font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .wrap{max-width:none;gap:0}
   .controls,.csvbtn,.ptools,.dtools,.noprint,dialog.drawer,.ctip,.card-controls,.pcards,.banner,.new-dot{display:none!important}
   .sheet{box-shadow:none;border-radius:0;overflow:visible}
-  .mast{padding:8px 22px}
+  .mast{padding:8px 22px;background:var(--navy)!important;box-shadow:none}
   .mast h1{font-size:26px}
-  .mast .month{font-size:20px}
+  .mast .month{font-size:17px}
   .mast .sub,.mast .src{font-size:12px}
   .mast .right{text-align:right}
 
   .kpis{grid-template-columns:repeat(6,minmax(0,1fr))}
   .kpi,.kpi:nth-child(n){padding:4px 14px;border-right:1px solid var(--line);border-bottom:0}
   .kpi:last-child{border-right:0}
-  .kpi .val{font-size:20px}
+  .kpi .val,.kpi.primary .val{font-size:20px}
+  .kpi.primary{background:none;box-shadow:none}
   .kpi .note,.kpi .delta{font-size:11px}
+  .kpi .delta{margin-top:0;padding:0;background:none!important}
   .tgt{margin-top:1px}
   .tbar{display:none}
   .tnote{font-size:10px;margin-top:0}
   /* one line per highlight so the people table still fits on page 1 */
   .hl{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:4px 22px}
-  .hlc{flex-direction:row;align-items:baseline;gap:5px;padding:2px 8px;border-radius:5px;background:var(--tint);white-space:nowrap;overflow:hidden}
+  .hlc{flex-direction:row;align-items:baseline;gap:5px;padding:2px 8px 2px 10px;border-radius:5px;background:var(--tint);white-space:nowrap;overflow:hidden;box-shadow:none;transform:none}
+  .hlc::before{right:auto;bottom:0;width:2px;height:auto} /* the strip becomes a left edge on the one-line print card */
+  .hhead{display:contents}
+  .hico{display:none}
   .hlc .lab{font-size:8.5px;letter-spacing:.08em}
-  .hlc .who{font-size:10.5px;flex:0 1 auto}
-  .hlc .hv{font-size:10px}
+  .hlc .who{margin-top:0;font-size:10.5px;flex:0 1 auto}
+  .hlc .hv{font-size:10px;font-family:var(--f-body);letter-spacing:0}
   .hlc .hn{display:none}
-  th.trend,td.trend{display:none}
 
   .months,.people,details{padding-left:22px;padding-right:22px}
   .months{padding-top:4px;padding-bottom:0;break-inside:avoid}
   .chartbox,.tablebox,.tablebox.sticky{overflow:visible;max-height:none}
   .people-table{display:block!important}
   .tablebox.sticky thead th,.tablebox.sticky tbody td:first-child{position:static!important;box-shadow:none!important}
+  .people-table tr.total td{box-shadow:none!important;border-top:2px solid var(--ink);padding-top:2px;padding-bottom:1px}
+  .ini{display:none!important}
   .chart .hit{stroke:none!important}
   .chart{min-width:0;max-height:1in}
   .people{padding-top:5px;gap:3px}
@@ -464,7 +521,8 @@ body:has(dialog.drawer[open]){overflow:hidden}
   .sechead h2{font-size:14px}
   .people{padding-bottom:6px}
   .legend{font-size:10px;gap:2px 12px}
-  .sw{width:10px;height:10px;margin-right:4px}
+  .sw::before{width:6px;height:6px;margin-right:4px}
+  td.good::before,td.warn::before,td.bad::before,td.few::before{width:6px;height:6px;margin-right:4px}
   details{padding-top:10px;padding-bottom:10px}
   details summary{list-style:none;font-size:13px}
   details summary::-webkit-details-marker{display:none}
@@ -546,3 +604,55 @@ table.alog{min-width:560px}
 .alog tr.undone td:last-child{text-decoration:none}
 @media (max-width:640px){ .adminfab{padding:8px} .adminfab .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap} .apbar{padding:12px 18px 0} .pk{gap:18px} .phd,.checks,.pgrid,.pbar{padding-left:14px;padding-right:14px} }
 @media print{ .adminfab,dialog.adrawer,.card-controls,.pcards,.banner,.new-dot{display:none!important} .people-table{display:block!important} body{padding-bottom:0} }
+
+/* Primes, Recontacting and Spread views */
+.xsec{padding:22px 44px 26px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line)}
+.xsec,.xsec > *,.xgrid > *{min-width:0}
+.xsec .tablebox{max-width:100%}
+.xsec.primes{background:var(--tint)}
+.xsec.primes .tablebox{background:var(--sheet)}
+.xtable td:not(.rt),.xtable th:not(.rt){text-align:left}
+.xtable tr.total td{font-weight:700;background:var(--tint)}
+.xtable td .pill{white-space:nowrap}
+.xgrid{display:grid;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1700px){.xgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.xgrid .xsec:nth-child(odd){border-right:1px solid var(--line)}}
+.xgrid table{min-width:560px}
+.chart .pendline{stroke:var(--muted);stroke-width:2;stroke-dasharray:3 3}
+.mtdgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mtdgrid .lab{font-family:var(--f-cond);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mtdgrid .val{font-family:var(--f-cond);font-variant-numeric:tabular-nums;font-size:26px;font-weight:700}
+.rctable{font-size:12.5px}
+.rctable thead th{font-size:11px}
+.rctable tbody td{padding:3px 7px;vertical-align:top;line-height:1.35}
+.rctable td .tag{font-size:10px;margin-left:5px}
+.rctable .pill{font-size:11px;padding:0 7px}
+.rc{min-width:0;white-space:nowrap}
+.rc .rcm{color:var(--muted)}
+.rc .rcm b{color:var(--ink);font-weight:600}
+.rctable td.notecell{width:100%;max-width:0}
+.rc.long{width:100%;min-width:260px}
+.rcnote{all:unset;display:flex;gap:6px;width:100%;cursor:pointer;border-radius:2px}
+.rcnote .rcm::after{content:":"}
+.rcnote:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.rcnote .rcm{flex:0 0 auto}
+.rcnote .rct{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rcnote:hover .rct{text-decoration:underline;text-underline-offset:2px}
+.rcnote[aria-expanded="true"]{flex-direction:column;gap:2px;white-space:normal}
+.rcnote[aria-expanded="true"] .rct{white-space:normal;overflow:visible}
+.rcfilter button{white-space:nowrap}
+@media (max-width:640px){
+  .xsec{padding:16px}
+  .mtdgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .xgrid table{min-width:520px}
+}
+@media (max-width:640px){
+  .tabs[role="tablist"]{max-width:100%;overflow-x:auto;scrollbar-width:none}
+  .tabs[role="tablist"] button{padding:8px 12px;white-space:nowrap}
+}
+/* client drawer (Primes) and static table headers */
+dialog.drawer.wide{width:min(980px,100vw)}
+.phead .psub{color:var(--navy-muted);font-size:13.5px;margin-top:4px}
+thead th .thl{display:block;padding:9px 8px}
+.drawer .xtable{min-width:0}
+.xsec h3{margin:8px 0 0;font-family:var(--f-cond);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase}
+.xsec.forecast .kpis{border:1px solid var(--line);border-radius:4px}

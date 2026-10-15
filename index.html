@@ -18,10 +18,13 @@
     <div class="tabs" role="tablist" aria-label="Report side">
       <button id="tab-sales" role="tab" aria-selected="true" data-side="sales">Sales</button>
       <button id="tab-recruiting" role="tab" aria-selected="false" data-side="recruiting">Recruiting</button>
+      <button id="tab-primes" role="tab" aria-selected="false" data-side="primes">Primes</button>
+      <button id="tab-recontact" role="tab" aria-selected="false" data-side="recontact">Recontacting</button>
+      <button id="tab-spread" role="tab" aria-selected="false" data-side="spread">Spread</button>
     </div>
     <select id="month" class="field" aria-label="Month"></select>
-    <input id="q" class="field" type="search" placeholder="Find a name" aria-label="Find a name" autocomplete="off">
-    <label class="check"><input id="former" type="checkbox"> Show former staff</label>
+    <input id="q" class="field" type="search" placeholder="Find a name" aria-label="Find a name or client" autocomplete="off">
+    <label class="check" id="formerWrap"><input id="former" type="checkbox"> Show former staff</label>
     <span class="status" id="status"><span class="dot"></span><span id="statusText">Connecting to report data…</span></span>
     <div class="tabs theme" role="group" aria-label="Theme">
       <button type="button" data-theme-set="system" aria-label="System theme" title="System theme"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg></button>

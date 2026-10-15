@@ -23,3 +23,9 @@
   [headers.values]
     X-Robots-Tag = "noindex"
     Cache-Control = "no-store"
+
+# keep the scorecard out of search engines
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

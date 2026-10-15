@@ -1,7 +1,7 @@
 // Admin panel on the scorecard: sign in, see which week/month the next report covers, drop the
 // Weekly Spread Dashboard, preview the change, publish, undo. main.js loads this module on demand.
 import * as XLSX from "xlsx";
-import { parseDashboard, pickSheet, payrollMonth, monthSkeleton, applySpread, nameResolver, MONTHNAME } from "../shared/spread-import.js";
+import { parseDashboard, parseReport, pickSheet, payrollMonth, monthSkeleton, applySpread, nameResolver, MONTHNAME } from "../shared/spread-import.js";
 
 const fmt = new Intl.NumberFormat("en-US");
 const money = v => v == null ? "—" : (v < 0 ? "−$" : "$") + fmt.format(Math.abs(Math.round(v)));
@@ -95,6 +95,7 @@ function draw(){
   bar.appendChild(out); body.appendChild(bar);
 
   const ctx = el("section", "psec apctx"); body.appendChild(ctx);
+  const bh = el("section", "psec apbh"); body.appendChild(bh);
   const up = el("section", "psec");
   up.appendChild(dropZone());
   const pv = el("div", "appreview"); pv.id = "apPreview"; up.appendChild(pv);
@@ -110,6 +111,7 @@ function draw(){
 
   loadData().then(() => { drawContext(ctx); drawTargets(tg); }).catch(() => { ctx.textContent = "Couldn't load the current data."; });
   loadLog();
+  drawBullhorn(bh);
 }
 
 // What's on the scorecard now, and which week/month the next report should be.
@@ -125,6 +127,54 @@ function drawContext(box){
   } else card("On the scorecard now", "No spread report yet", null);
   if (META && META.lastUpload) card("Last upload", new Date(META.lastUpload.at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }), "by " + META.lastUpload.by);
   box.appendChild(grid);
+}
+
+// ---- Bullhorn sync ----
+// Activity (submittals, interviews, placements, calls, visits, job orders) comes from Bullhorn on a schedule;
+// Sync now runs it at once. Spread isn't touched.
+const when = iso => new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+async function drawBullhorn(box, poll){
+  box.textContent = "";
+  const h = el("h3", null, "Bullhorn activity"); h.appendChild(el("span", "hint", "Syncs weekdays about 7am and 6pm; spread isn't touched")); box.appendChild(h);
+  let r;
+  try { r = await api("/api/bullhorn"); } catch (err) { box.appendChild(el("p", "pnote", err.message)); return; }
+  const st = r.status;
+  if (!r.configured){ box.appendChild(el("p", "pnote", "Bullhorn isn't set up. Add the BULLHORN_* environment variables in Netlify, then redeploy.")); return; }
+  const running = st && st.running && Date.now() - Date.parse(st.startedAt) < 10 * 60e3;
+  box.appendChild(el("p", "pnote", running ? "Syncing from Bullhorn… (started " + when(st.startedAt) + ")"
+    : !st ? "Not synced yet. The scorecard shows the Bullhorn data that ships with the site."
+    : st.ok === false ? "Last sync failed " + when(st.failedAt) + ": " + st.error + (st.at ? " Last good sync: " + when(st.at) + "." : "")
+    : "Last synced " + when(st.at) + (st.by === "schedule" ? " (scheduled)" : " by " + st.by) + "."));
+  if (st && st.months && st.months.length){
+    const tb = el("div", "tablebox"), t = el("table", "num"), th = el("thead"), hr = el("tr"), tbody = el("tbody");
+    ["Month", "Submittals", "Interviews", "Placements", "Starts", "Job orders"].forEach(x => hr.appendChild(el("th", null, x)));
+    th.appendChild(hr); t.appendChild(th);
+    st.months.forEach(m => { const tr = el("tr"); [m.label, m.submittals, m.interviews, m.placements, m.starts, m.jobOrders].forEach(x => tr.appendChild(el("td", null, typeof x === "number" ? fmt.format(x) : x))); tbody.appendChild(tr); });
+    t.appendChild(tbody); tb.appendChild(t); box.appendChild(tb);
+  }
+  if (st && st.roster) box.appendChild(el("p", "pnote", "Recontacting: " + st.roster.matched + " of " + st.roster.consultants + " consultants on the latest spread report found in Bullhorn."));
+  (st && st.warnings || []).forEach(w => box.appendChild(el("p", "pnote", w)));
+  const bar = el("div", "pbar"), go = el("button", "field primary", running ? "Syncing…" : "Sync now"), msg = el("span", "pmsg");
+  go.type = "button"; go.disabled = !!running; msg.setAttribute("role", "status");
+  bar.appendChild(go); bar.appendChild(msg); box.appendChild(bar);
+  go.addEventListener("click", async () => {
+    go.disabled = true; go.textContent = "Syncing…"; msg.className = "pmsg"; msg.textContent = "";
+    try { await startSync(box); }
+    catch (err) { go.disabled = false; go.textContent = "Sync now"; msg.className = "pmsg bad"; msg.textContent = err.message; }
+  });
+  // after Sync now: check every few seconds until it finishes, then refresh the scorecard behind the panel
+  if (poll && box.isConnected){
+    const done = st && [st.at, st.failedAt].some(t => t && Date.parse(t) > poll);
+    if (!done && Date.now() - poll < 3 * 60e3) setTimeout(() => drawBullhorn(box, poll), 4000);
+    else if (done && st.ok && opts.onChange) opts.onChange();
+  }
+}
+
+async function startSync(box){
+  const clicked = Date.now();
+  const res = await fetch("/.netlify/functions/bullhorn-sync-background", { method: "POST", headers: { authorization: "Bearer " + session.token } });
+  if (res.status !== 202) throw new Error(res.status === 404 ? "The sync service isn't running here. Locally, start the site with npm run dev:netlify." : "Couldn't start the sync (" + res.status + ").");
+  setTimeout(() => drawBullhorn(box, clicked), 3000);
 }
 
 // ---- monthly targets ----
@@ -261,10 +311,10 @@ async function readFile(file){
   const sheet = pickSheet(wb.SheetNames, rowsOf);
   if (!sheet) return out.appendChild(problem("Couldn't find the dashboard sheet", "Looked for a sheet named \"Dashboard - Month To Date\" or one with a \"Week Ending\" row. Sheets in this file: " + wb.SheetNames.join(", ") + "."));
   await loadData().catch(() => {});
-  preview(out, file, sheet, parseDashboard(rowsOf(sheet)));
+  preview(out, file, sheet, parseDashboard(rowsOf(sheet)), parseReport(wb.SheetNames, rowsOf));
 }
 
-function preview(out, file, sheet, p){
+function preview(out, file, sheet, p, report){
   out.textContent = "";
   const errors = p.warnings.filter(w => /Couldn't find/.test(w));
   if (errors.length) return out.appendChild(problem("This doesn't look like the Weekly Spread Dashboard", errors.join(" ") + " (Sheet read: " + sheet + ".)"));
@@ -292,6 +342,13 @@ function preview(out, file, sheet, p){
   [p.ae, p.rm].forEach(t => Object.keys(t).forEach(n => { if (n !== "Perm" && !resolve(n).matched && fresh.indexOf(n) < 0) fresh.push(n); }));
   if (fresh.length) add(false, "New name" + (fresh.length > 1 ? "s" : "") + " not on the scorecard yet, added as new rows: " + fresh.join(", "));
   p.warnings.forEach(w => add(false, w));
+  if (report.weekly) add(report.weekly.weekEnding === p.weekEnding ? true : false, "Week's revenue " + money(report.weekly.revenue) + " → run rate " + money(report.weekly.runRate) + " a year (× 52)"
+    + (report.weekly.weekEnding === p.weekEnding ? "" : ". The Weekly sheet is for the week ending " + dateLabel(report.weekly.weekEnding, true) + ", not this report's week."));
+  if (report.detail.length){
+    const fed = report.detail.filter(d => /^federal$/i.test(d.lob || "")).length;
+    add(true, report.detail.length + " consultants billing this week (" + fed + " federal) for the Spread and Recontacting tabs" + (report.clients.length ? ", and " + report.clients.length + " clients month to date" : ""));
+  }
+  report.warnings.forEach(w => add(false, w));
 
   const card = el("div", "pcard");
   const head = el("div", "phd"), t = el("div");
@@ -321,7 +378,8 @@ function preview(out, file, sheet, p){
     try {
       const r = await api("/api/upload", { method: "POST", body: JSON.stringify({
         parsed: { weekEnding: p.weekEnding, revenue: p.revenue, gp: p.gp, month: p.month || null, weekOf: p.weekOf || null, ae: p.ae, rm: p.rm },
-        month: { key: pm.key, start: pm.start, end: pm.end }, names: NAMES, file: file.name }) });
+        month: { key: pm.key, start: pm.start, end: pm.end }, names: NAMES, file: file.name,
+        report: report.detail.length ? { weekly: report.weekly, detail: report.detail, clients: report.clients } : null }) });
       out.textContent = "";
       const ok = el("div", "done"); ok.appendChild(el("strong", null, r.label + " is live: " + money(r.gp) + " spread"));
       const view = el("button", "field small", "View " + r.label.split(" ")[0] + " on the scorecard"); view.type = "button";
@@ -329,6 +387,9 @@ function preview(out, file, sheet, p){
       ok.appendChild(view); out.appendChild(ok);
       if (opts.onChange) opts.onChange();
       await loadData(); drawContext(document.querySelector(".adrawer .apctx")); loadLog();
+      // the report's consultants feed Recontacting and Primes, which need Bullhorn: sync now rather than at the next schedule
+      const bh = document.querySelector(".adrawer .apbh");
+      if (bh && report.detail.length) startSync(bh).catch(() => {});
     } catch (err) { msg.className = "pmsg bad"; msg.textContent = err.message; go.disabled = cancel.disabled = false; }
   });
   bar.appendChild(go); bar.appendChild(cancel); bar.appendChild(msg); card.appendChild(bar);

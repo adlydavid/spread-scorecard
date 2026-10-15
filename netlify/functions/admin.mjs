@@ -4,9 +4,12 @@
 //   POST /api/upload  {parsed, month, names, file} -> saves the month's spread (signed in)
 //   POST /api/revert  {id}                         -> puts a month back the way it was before that upload (signed in)
 //   POST /api/targets {from, team, scale5, people} -> saves monthly spread targets that apply from that month on (signed in)
+//   GET  /api/bullhorn                             -> last Bullhorn sync status (signed in); bullhorn-sync-background runs one
 import { getStore } from "@netlify/blobs";
 import { login, verify, json } from "../lib/auth.mjs";
-import { applySpread, monthSkeleton, validateParsed } from "../../shared/spread-import.js";
+import { applySpread, monthSkeleton, validateParsed, validateReport } from "../../shared/spread-import.js";
+import { syncStatus } from "../lib/bullhorn-sync.mjs";
+import { configured as bullhornConfigured } from "../lib/bullhorn.mjs";
 
 const LOG_SIZE = 20;
 
@@ -32,8 +35,8 @@ async function currentMeta(store, req){
 async function upload(req, store, user){
   const body = await req.json().catch(() => null);
   if (!body) return json(400, { error: "Expected JSON." });
-  const { parsed, month, names, file } = body;
-  const bad = validateParsed(parsed);
+  const { parsed, month, names, file, report } = body;
+  const bad = validateParsed(parsed) || validateReport(report);
   if (bad) return json(400, { error: bad });
   if (!month || !/^\d{4}-\d{2}$/.test(month.key || "") || !/^\d{4}-\d{2}-\d{2}$/.test(month.start || "") || !/^\d{4}-\d{2}-\d{2}$/.test(month.end || ""))
     return json(400, { error: "Missing payroll month." });
@@ -65,11 +68,24 @@ async function upload(req, store, user){
   });
 
   const log = (await store.get("log", { type: "json" })) || [];
+  const prevReport = await store.get("report", { type: "json" });
   const entry = { id: crypto.randomUUID(), at: new Date().toISOString(), by: user, file: String(file || "").slice(0, 120),
     key: next.key, label: next.label, weekEnding: parsed.weekEnding, weekOf: parsed.weekOf || null, gp: next.gp, revenue: next.revenue,
-    prev: { source: cur.source, doc: cur.source === "upload" ? cur.doc : null, gp: cur.doc ? cur.doc.gp : null, meta } };
+    prev: { source: cur.source, doc: cur.source === "upload" ? cur.doc : null, gp: cur.doc ? cur.doc.gp : null, meta, report: report ? prevReport : undefined } };
   await store.setJSON("months/" + next.key, next);
   await store.setJSON("meta", nextMeta);
+  // the whole report (weekly totals, every consultant, the client table) for the Spread, Recontacting and Primes views
+  if (report && report.detail.length){
+    await store.setJSON("report", { weekEnding: parsed.weekEnding, file: entry.file, at: entry.at, by: user, weekly: report.weekly || null,
+      mtd: { label: next.label, key: next.key, weekOf: parsed.weekOf || null, revenue: parsed.revenue, gp: parsed.gp, ae: parsed.ae, rm: parsed.rm },
+      clients: report.clients, detail: report.detail });
+    if (report.weekly){ // weekly totals by week ending, for run rate over time
+      const weeks = ((await store.get("reportWeeks", { type: "json" })) || []).filter(w => w.weekEnding !== report.weekly.weekEnding);
+      weeks.push({ weekEnding: report.weekly.weekEnding, revenue: report.weekly.revenue, gp: report.weekly.gp, runRate: report.weekly.runRate,
+        active: report.weekly.active, hc: report.detail.reduce((a, d) => a + (d.hc || 0), 0) });
+      await store.setJSON("reportWeeks", weeks.sort((a, b) => a.weekEnding < b.weekEnding ? -1 : 1).slice(-104));
+    }
+  }
   await store.setJSON("log", [entry, ...log].slice(0, LOG_SIZE));
   return json(200, { ok: true, key: next.key, label: next.label, gp: next.gp });
 }
@@ -85,6 +101,16 @@ async function revert(req, store, user){
   if (entry.prev.source === "upload") await store.setJSON("months/" + entry.key, entry.prev.doc);
   else await store.delete("months/" + entry.key); // back to the file that ships with the site, or no month at all
   await store.setJSON("meta", entry.prev.meta || {});
+  if (entry.prev.report !== undefined){
+    if (entry.prev.report) await store.setJSON("report", entry.prev.report); else await store.delete("report");
+    // drop this upload's week; if the report it replaced was for the same week, put that one's totals back
+    const weeks = ((await store.get("reportWeeks", { type: "json" })) || []).filter(w => w.weekEnding !== entry.weekEnding);
+    const pr = entry.prev.report;
+    if (pr && pr.weekly && pr.weekly.weekEnding === entry.weekEnding)
+      weeks.push({ weekEnding: pr.weekly.weekEnding, revenue: pr.weekly.revenue, gp: pr.weekly.gp, runRate: pr.weekly.runRate, active: pr.weekly.active,
+        hc: pr.detail.reduce((a, d) => a + (d.hc || 0), 0) });
+    await store.setJSON("reportWeeks", weeks.sort((a, b) => a.weekEnding < b.weekEnding ? -1 : 1));
+  }
   entry.reverted = { at: new Date().toISOString(), by: user };
   await store.setJSON("log", log);
   return json(200, { ok: true });
@@ -135,7 +161,8 @@ export default async (req) => {
   if (path === "/api/upload" && req.method === "POST") return upload(req, store, user);
   if (path === "/api/revert" && req.method === "POST") return revert(req, store, user);
   if (path === "/api/targets" && req.method === "POST") return saveTargets(req, store, user);
+  if (path === "/api/bullhorn" && req.method === "GET") return json(200, { configured: bullhornConfigured(), status: await syncStatus(store) });
   return json(404, { error: "Not found." });
 };
 
-export const config = { path: ["/api/login", "/api/log", "/api/upload", "/api/revert", "/api/targets"] };
+export const config = { path: ["/api/login", "/api/log", "/api/upload", "/api/revert", "/api/targets", "/api/bullhorn"] };
